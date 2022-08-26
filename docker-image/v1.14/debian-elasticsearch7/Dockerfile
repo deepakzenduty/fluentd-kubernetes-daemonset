@@ -13,13 +13,13 @@ ENV GEM_HOME /fluentd/vendor/bundle/ruby/2.7.0
 ENV FLUENTD_DISABLE_BUNDLER_INJECTION 1
 
 COPY Gemfile* /fluentd/
-RUN buildDeps="sudo make gcc g++ libc-dev libffi-dev build-essential libgeoip-dev" \
+RUN buildDeps="sudo make gcc g++ libc-dev libffi-dev" \
   runtimeDeps="" \
       && apt-get update \
      && apt-get upgrade -y \
      && apt-get install \
      -y --no-install-recommends \
-     $buildDeps $runtimeDeps net-tools \
+     $buildDeps $runtimeDeps net-tools build-essential libmaxminddb-dev libgeoip-dev \
     && gem install bundler --version 2.2.24 \
     && bundle config silence_root_warning true \
     && bundle install --gemfile=/fluentd/Gemfile --path=/fluentd/vendor/bundle \
