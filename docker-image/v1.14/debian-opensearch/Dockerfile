@@ -19,7 +19,7 @@ RUN buildDeps="sudo make gcc g++ libc-dev libffi-dev" \
      && apt-get upgrade -y \
      && apt-get install \
      -y --no-install-recommends \
-     $buildDeps $runtimeDeps net-tools \
+     $buildDeps $runtimeDeps net-tools build-essential libmaxminddb-dev libgeoip-dev \
     && gem install bundler --version 2.2.24 \
     && bundle config silence_root_warning true \
     && bundle install --gemfile=/fluentd/Gemfile --path=/fluentd/vendor/bundle \
